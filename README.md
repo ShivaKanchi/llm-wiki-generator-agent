@@ -1,129 +1,395 @@
-# LLM Wiki Starter
+# LLM Wiki Generator
 
-This project is a generic LLM-maintained markdown wiki starter, not an application runtime. Its job is to turn raw documents into a persistent, linked knowledge base with summaries, entities, concepts, source attribution, and maintenance logs.
+A generic, AI-maintained markdown wiki starter that turns raw documents into a persistent, structured knowledge base with summaries, entities, concepts, source attribution, and maintenance logs.
 
-The starter gives humans and AI agents a predictable place to put source material, generated wiki pages, operating instructions, and maintenance history. It is intentionally generic. Add domain-specific folders only when the project needs them.
+## What is an LLM Wiki?
 
-## How It Works
+An LLM Wiki is a knowledge base that compounds over time. Instead of forcing future agents to rediscover facts from every new document, sources are read once, distilled into durable pages (summaries, entities, concepts), and linked together. The raw sources stay immutable in an archive; the generated wiki grows and improves with each new source. Humans curate sources and review outputs; AI agents maintain structure and handle ingestion.
 
-- Put unprocessed source files in `raw/`.
-- Ask an AI agent to follow [[_update|Update Workflow]].
-- The agent reads each source once, extracts durable knowledge, and creates or updates generated pages.
-- Consumed sources move to `ingested/` with dated filenames and should remain immutable.
-- Human-facing pages live in `summaries/`, `entities/`, and `concepts/`.
-- `index.md` and same-name folder directory pages keep the wiki navigable.
-- `log.md` records every maintenance operation, including created and updated files.
+---
 
-## Setup Instructions
+## Why Use It?
 
-Use [[_init|Init Workflow]] to bootstrap a new wiki and [[_update|Update Workflow]] to ingest new sources or run maintenance passes. Read [[_idea|LLM Wiki Idea]] for the operating model, [[_template|Wiki Templates]] for generated page structure, and [[AGENTS|Agent Instructions]] for agent-specific rules.
+- **Compounding Knowledge**: Each source improves the persistent synthesis, not a temporary retrieval. New facts build on previous understanding.
+- **Structured Attribution**: Every claim is traceable to source files. Contradictions are explicit. Confidence is tracked.
+- **AI-Ready Metadata**: Frontmatter and Obsidian links make pages queryable and traversable for AI agents maintaining the wiki.
+- **Obsidian Integration**: Full markdown format works in Obsidian; use graph view to explore relationships across summaries, entities, and concepts.
+- **Source Immutability**: Ingested sources never change, creating an audit trail. Generated pages can evolve as understanding improves.
 
-## Logging Instructions
+---
 
-Use `log.md` as the append-only maintenance history. Log entries should record the operation, unresolved issues, and every changed file with `create - <file-path>` or `update - <file-path>`.
+## The Pattern
 
-## Current Starter State
+```
+raw/
+├── your-new-document.pdf
+└── research-report.md
+     ↓
+    (AI agent ingests)
+     ↓
+ingested/
+├── 2026-05-01-your-new-document.pdf
+└── 2026-05-01-research-report.md
 
-This repository is currently an empty starter wiki. No summary, entity, or concept pages have been generated yet; the directory pages are placeholders until source files are ingested.
+Generated wiki pages:
+summaries/
+├── summaries.md
+└── your-new-document.md (one-page synthesis)
 
-## Quickstart
+entities/
+├── entities.md
+├── person-name.md
+└── company-name.md
 
-1. Copy this folder into a new project.
-2. Put unprocessed source files in `raw/`.
-3. Ask an AI agent to follow [[_update|Update Workflow]].
-4. Review generated pages in `summaries/`, `entities/`, and `concepts/`.
-5. Keep source files immutable after they move to `ingested/`.
-6. Keep `index.md` and each folder directory page current.
+concepts/
+├── concepts.md
+└── durable-idea.md
+```
 
-## Core Structure
+**Flow**: Put raw sources in `raw/` → Ask your AI agent to ingest → Agent reads, extracts, creates/updates wiki pages → Agent moves source to `ingested/` with timestamp → Human reviews and refines.
 
-- `index.md` - root navigation entrypoint.
-- [[_idea|LLM Wiki Idea]] - operating model and philosophy.
-- [[_init|Init Workflow]] - bootstrap instructions for a new wiki.
-- [[_update|Update Workflow]] - repeatable ingestion and maintenance workflow.
-- [[_template|Wiki Templates]] - page templates, metadata, and linking rules.
-- [[AGENTS|Agent Instructions]] - instructions for AI agents maintaining the wiki.
-- `log.md` - append-only maintenance history.
-- `raw/` - inbox for unprocessed source files.
-- `ingested/` - archive for consumed source files.
-- `summaries/` - source summaries and synthesis pages.
-- `entities/` - people, products, companies, tools, standards, systems, or other named things.
-- `concepts/` - durable ideas, patterns, definitions, and reusable knowledge.
+---
 
-## Folder Directory Rule
+## Core Concepts
 
-Do not create `index.md` inside topic folders. Use a directory page with the same name as the folder:
+### Ownership Model
 
+- **Humans**: Curate sources, ask questions, review generated pages, decide what topics matter.
+- **AI Agents**: Maintain structure, ingest sources, create and update wiki pages, manage links and logs.
+
+### Folder Structure
+
+- **`raw/`** — Inbox for new, unprocessed source files. Never edit contents.
+- **`ingested/`** — Archive of consumed sources with datestamps: `YYYY-MM-DD-original-name.md`. Immutable.
+- **`summaries/`** — One-page extractions and syntheses of source documents.
+- **`entities/`** — Named things: people, products, companies, tools, standards, systems, organizations.
+- **`concepts/`** — Durable ideas, patterns, definitions, and reusable knowledge.
+- **`index.md`** — Wiki entry point; links to topic folders and log.
+- **`log.md`** — Append-only history of every ingest, maintenance pass, and structural change.
+
+### Operating Files (for AI agents)
+
+- **`_init.md`** — Bootstrap workflow for new projects.
+- **`_update.md`** — Repeatable ingest and maintenance workflow.
+- **`_template.md`** — Page templates, metadata rules, linking conventions.
+- **`AGENTS.md`** — Agent-specific rules and constraints.
+- **`_idea.md`** — Operating model and philosophy.
+
+---
+
+## Getting Started
+
+### For New Projects
+
+1. **Fork or copy this repository** into your project.
+2. **Read the setup guide**: Point your AI agent to [\_init.md](_init.md).
+
+   **Example prompt to agent**:
+
+   ```
+   create wiki for this project @_init.md
+   ```
+
+3. **Verify structure**: Confirm these folders and files exist:
+   - `raw/`, `ingested/`, `summaries/`, `entities/`, `concepts/`
+   - `_init.md`, `_update.md`, `_template.md`, `AGENTS.md`, `_idea.md`
+   - `index.md`, `log.md`, `README.md`
+
+### For Adding Sources
+
+1. **Place your source files in `raw/`**.
+   - Examples: research PDFs, markdown reports, documentation, analysis.
+
+2. **Ask your AI agent to ingest**:
+
+   **Example prompt to agent**:
+
+   ```
+   update the wiki @_update.md
+   ```
+
+3. **Review the generated pages** in `summaries/`, `entities/`, and `concepts/`.
+
+4. **The agent will**:
+   - Read each source once
+   - Extract durable summaries, entities, and concepts
+   - Create new wiki pages or update existing ones
+   - Move processed sources to `ingested/` with timestamps
+   - Update folder directory pages and `index.md`
+   - Log all changes in `log.md`
+
+---
+
+## Workflows
+
+### New Projects: \_init.md
+
+Use [\_init.md](_init.md) to bootstrap the wiki structure. The workflow:
+
+1. Creates root files and core folders.
+2. Sets up folder directory pages (`entities/entities.md`, `concepts/concepts.md`, `summaries/summaries.md`).
+3. Archives any pre-existing sources into `ingested/` with timestamps.
+4. Compiles the first source into durable wiki pages.
+5. Initializes `log.md` with bootstrap entry.
+
+**Tell your agent**: "Follow the init workflow in \_init.md to bootstrap this wiki."
+
+### Adding Sources: \_update.md
+
+Use [\_update.md](_update.md) whenever new files are dropped into `raw/` or when the wiki needs maintenance. The workflow:
+
+1. Scan `raw/` for processable files.
+2. Read each source and extract:
+   - Summaries (one-page extractions)
+   - Entities (named things: people, products, companies, tools, systems)
+   - Concepts (durable ideas, patterns, definitions, reusable knowledge)
+   - Decisions, assumptions, contradictions, open questions
+3. Update existing pages first when a topic already exists.
+4. Create new pages only for durable topics likely to be reused.
+5. Use Obsidian links to connect pages: `[[entities/entities|Entities]]`.
+6. Refresh `index.md` and folder directory pages.
+7. Move consumed sources to `ingested/YYYY-MM-DD-original-name.md`.
+8. Append a log entry with files processed, issues, and changed files.
+
+**Tell your agent**: "Follow the update workflow in \_update.md to ingest raw/ sources."
+
+---
+
+## Examples
+
+### Real Workflow: AI-Augmented Issue Tracker with Deep Research
+
+Here's a concrete walkthrough of how the LLM Wiki helped an AI-augmented issue tracking system incorporate deep research findings.
+
+#### Setup
+
+The project `ai-augmented-issue-tracking` forked this wiki boilerplate into its codebase. The goal: turn a deep research report into a structured knowledge base that informs issue categorization and prioritization.
+
+#### Source Document
+
+A 50-page research report `deep-research-report.md` was placed in `raw/`:
+
+```
+ai-augmented-issue-tracking/
+├── wiki/
+│   ├── raw/
+│   │   └── deep-research-report.md
+│   ├── ingested/
+│   ├── summaries/
+│   ├── entities/
+│   ├── concepts/
+│   └── ...
+├── src/
+│   ├── issue-tracker/
+│   └── agent/
+└── README.md
+```
+
+![Initial Graph](https://res.cloudinary.com/dsjittczd/image/upload/v1777654888/llm-wiki-generator-agent_intial-graph_v2bdxc.webp)
+
+_Before ingestion: Empty wiki structure with placeholder directory pages._
+
+#### Agent Invocation
+
+The project's AI coding agent (Codex) was given:
+
+```
+create wiki for this project @_init.md
+```
+
+For ingestion, the agent was prompted:
+
+```
+update the wiki @_update.md
+```
+
+#### What the Agent Did
+
+1. **Read** the entire deep-research-report.md.
+2. **Extracted** key entities:
+   - `entities/research-framework.md` — The meta-methodology
+   - `entities/stakeholder-groups.md` — People/roles mentioned
+   - `entities/tools-and-standards.md` — Technologies referenced
+
+3. **Extracted** durable concepts:
+   - `concepts/issue-severity-taxonomy.md` — How to classify severity based on research
+   - `concepts/multi-stakeholder-prioritization.md` — Balancing different stakeholder needs
+   - `concepts/research-driven-triage.md` — Using research to inform triage
+
+4. **Created** a summary:
+   - `summaries/deep-research-report.md` — One-page synthesis
+
+5. **Updated** `index.md` and folder directory pages with links.
+
+6. **Archived** the source:
+   - Moved `raw/deep-research-report.md` → `ingested/2026-05-01-deep-research-report.md`
+
+7. **Logged** the operation:
+
+   ```
+   2026-05-01T14:30:00+05:30 | Ingested deep-research-report.md
+   unresolved issues: None
+
+   create - summaries/deep-research-report.md
+   create - entities/research-framework.md
+   create - entities/stakeholder-groups.md
+   create - entities/tools-and-standards.md
+   create - concepts/issue-severity-taxonomy.md
+   create - concepts/multi-stakeholder-prioritization.md
+   create - concepts/research-driven-triage.md
+   update - index.md
+   update - summaries/summaries.md
+   update - entities/entities.md
+   update - concepts/concepts.md
+   update - log.md
+   ```
+
+#### Outcome
+
+The issue tracker's agent could now reference structured, linked concepts when categorizing new issues. Instead of re-reading the 50-page report, the agent could query `concepts/issue-severity-taxonomy.md` and traverse related entities and summaries.
+
+#### Result Structure
+
+The team could now:
+
+- Use Obsidian to browse research findings and cross-references.
+- Query the wiki to answer research questions without re-reading sources.
+- Version the research knowledge separately from the codebase.
+- Accumulate more research reports over time, compounding the knowledge.
+
+![Ingested Graph](https://res.cloudinary.com/dsjittczd/image/upload/v1777655755/llm-wiki-generator-agent_ingested-graph_bqdr3g.webp)
+
+_After ingestion: Connected knowledge graph with entities, concepts, and summaries linked together._
+
+---
+
+## Detailed Reference
+
+### Folder Directory Pages
+
+Do not create `index.md` inside topic folders. Instead, create a same-name directory page:
+
+- `summaries/summaries.md`
 - `entities/entities.md`
 - `concepts/concepts.md`
-- `summaries/summaries.md`
 
-Each folder directory page should link every generated markdown page in that folder except itself.
-
-Example:
+Each directory page should link every generated markdown page in that folder (except itself) and include one-line descriptions. Example:
 
 ```markdown
 # Entities
 
-- Add generated entity pages here, such as entities/example-company.md.
-- Add generated tool pages here, such as entities/example-tool.md.
+- [[entities/research-framework|Research Framework]] — The meta-methodology
+- [[entities/stakeholder-groups|Stakeholder Groups]] — People and roles mentioned
+- [[entities/tools-and-standards|Tools and Standards]] — Referenced technologies
 ```
 
-## Ingestion Workflow
+### Metadata and Frontmatter
 
-1. Add new source files to `raw/`.
-2. Read `_template.md`, `index.md`, and `log.md`.
-3. Extract durable summaries, entities, and concepts.
-4. Update existing pages before creating new ones.
-5. Create new pages only for reusable topics.
-6. Move processed files to `ingested/YYYY-MM-DD-original-name.md`.
-7. Update folder directory pages and `index.md`.
-8. Append a concise entry to `log.md`.
-9. List every changed file in the log using `create - <file-path>` or `update - <file-path>`.
+Every generated wiki page must include frontmatter:
 
-Example log file list:
+```yaml
+---
+type: concept
+tags: [example, reusable]
+source:
+  - ingested/2026-05-01-example-source.md
+last_updated: 2026-05-01T20:30:00+05:30
+confidence: medium
+---
+```
+
+- **`type`**: `concept`, `entity`, `summary`
+- **`tags`**: Searchable keywords for the page
+- **`source`**: List of ingested files that informed this page (can be empty)
+- **`last_updated`**: Local ISO datetime with timezone offset
+- **`confidence`**: `high`, `medium`, or `low` (reflects how well-sourced the page is)
+
+### Page Shape
+
+Generated pages should follow this structure:
+
+```markdown
+# Page Title
+
+## Summary
+
+One short paragraph explaining this page.
+
+## Key Facts
+
+- Durable facts extracted from source files.
+
+## Implications
+
+- What the facts mean for the project, research direction, or future work.
+
+## Relationships
+
+- [[related-page|Description of relationship]].
+
+## Source Notes
+
+- Compiled from archived sources under `ingested/`.
+```
+
+See [\_template.md](_template.md) for full templates and citation rules.
+
+### Logging
+
+Use `log.md` as the append-only maintenance history. Every content change must be logged with one action line per file:
 
 ```text
+2026-05-01T14:30:00+05:30 | Ingested deep-research-report.md
+unresolved issues: None
+
 create - summaries/example-source.md
 update - concepts/example-concept.md
 update - index.md
 update - log.md
 ```
 
-## Optional Topic Folders
+Use `create - <file-path>` for new files and `update - <file-path>` for existing files.
 
-Create extra folders only when the project domain needs them. Common examples:
+### Optional Domain Folders
 
-- `product/` for requirements, personas, roadmap, and product decisions.
-- `market/` for competitors, pricing, positioning, and go-to-market notes.
-- `risks/` for risks, mitigations, assumptions, and open questions.
-- `comparisons/` for side-by-side evaluations.
-- `architecture/` for system design, data models, APIs, security, and infrastructure.
+Create extra folders only when your project domain clearly needs them. Common examples:
 
-If you add one, also add a same-name directory page such as `architecture/architecture.md`.
+- **`product/`** — requirements, personas, roadmap, and product decisions
+- **`market/`** — competitors, pricing, positioning, and go-to-market
+- **`risks/`** — risks, mitigations, assumptions, and open questions
+- **`architecture/`** — system design, data models, APIs, security, infrastructure
+- **`comparisons/`** — side-by-side evaluations
+- **`decisions/`** — architectural or strategic decisions with rationale
+- **`incidents/`** — postmortems and learnings from past issues
 
-## Metadata Rules
+If you add one, also add a same-name directory page, such as `architecture/architecture.md`.
 
-Every generated markdown page should include frontmatter:
+### Validation Checklist
 
-```yaml
+Before considering ingestion complete:
+
+- ✅ Every Obsidian link resolves to an existing markdown file
+- ✅ Every `source:` entry points to a file under `ingested/` or is empty
+- ✅ No topic folder contains `index.md`; use folder-name directory pages instead
+- ✅ `raw/` is empty except for placeholders after ingestion
+- ✅ `ingested/` contains only consumed, immutable source files with `YYYY-MM-DD-` prefix
+- ✅ Generated pages summarize and synthesize instead of copying large source sections
+- ✅ All `last_updated` values use local ISO datetime with timezone offset
+- ✅ Contradictions between sources are documented explicitly on affected pages
+
 ---
-type: concept
-tags: [example]
-source:
-  - ingested/YYYY-MM-DD-source-name.md
-last_updated: YYYY-MM-DDTHH:mm:ss+05:30
-confidence: medium
+
+## Learn More
+
+- **[\_idea.md](_idea.md)** — Operating model, why this pattern exists, ownership model
+- **[\_init.md](_init.md)** — Bootstrap workflow for new projects
+- **[\_update.md](_update.md)** — Repeatable ingest and maintenance workflow
+- **[\_template.md](_template.md)** — Page templates, metadata rules, citation conventions
+- **[AGENTS.md](AGENTS.md)** — AI agent-specific rules and constraints
+- **[index.md](index.md)** — Wiki entry point and navigation
+
 ---
-```
 
-Use local ISO timestamps with timezone offsets for `last_updated`, for example `2026-05-01T20:30:00+05:30`.
+## Credits
 
-## Validation Checklist
-
-- Every Obsidian link resolves to an existing markdown file.
-- Every `source:` entry is empty or points to an existing file under `ingested/`.
-- No folder uses `index.md`; folder directory pages use the folder name.
-- `raw/` is empty except placeholders after ingestion.
-- `ingested/` contains only consumed, immutable source files.
-- Generated pages summarize and synthesize instead of copying large source sections.
+This project is inspired by Andrej Karpathy's LLM Wiki idea. See his profile at [gist.github.com/karpathy](https://gist.github.com/karpathy) and the original gist [karpathy/llm-wiki.md](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).
