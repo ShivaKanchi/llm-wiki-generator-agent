@@ -12,11 +12,11 @@ Use this workflow whenever new files are dropped into `raw/` or when the wiki ne
 
 ## Read First
 
-Before editing generated pages, read:
+Before editing generated pages, read these files:
 
-- [[_template|Wiki Templates]]
-- [[index|LLM Wiki Starter]]
-- [[log|Wiki Log]]
+- `_template.md`
+- `index.md`
+- `log.md`
 
 Then scan `raw/` for processable source files.
 
@@ -50,6 +50,10 @@ update - log.md
 ```
 
 Use `create - <file-path>` for new files and `update - <file-path>` for existing files. Paths should be relative to the repository root.
+
+## Graph Hygiene
+
+Use Obsidian links intentionally. `index.md` should link only the main wiki directory pages and `log.md`; `README.md` should link setup and agent instruction files such as `_idea.md`, `_init.md`, `_update.md`, `_template.md`, and `AGENTS.md`.
 
 ## Link and Source Checks
 

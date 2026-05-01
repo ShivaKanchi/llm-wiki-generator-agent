@@ -141,6 +141,7 @@ When the user asks you to lint or audit the wiki:
 
 - Never edit source file contents in `raw/` or `ingested/`.
 - Always update `index.md`, relevant folder directory pages, and `log.md` after wiki content changes.
+- Keep graph links intentional: `index.md` links `summaries/`, `entities/`, `concepts/`, and `log.md`; `README.md` links setup and agent instruction files.
 - Keep page names lowercase with hyphens, for example `machine-learning.md`.
 - Use local ISO timestamps with timezone offsets for `last_updated`.
 - Write in clear, plain language.

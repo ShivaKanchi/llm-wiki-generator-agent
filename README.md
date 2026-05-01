@@ -7,12 +7,20 @@ The starter gives humans and AI agents a predictable place to put source materia
 ## How It Works
 
 - Put unprocessed source files in `raw/`.
-- Ask an AI agent to follow [`_update.md`](_update.md).
+- Ask an AI agent to follow [[_update|Update Workflow]].
 - The agent reads each source once, extracts durable knowledge, and creates or updates generated pages.
 - Consumed sources move to `ingested/` with dated filenames and should remain immutable.
 - Human-facing pages live in `summaries/`, `entities/`, and `concepts/`.
 - `index.md` and same-name folder directory pages keep the wiki navigable.
 - `log.md` records every maintenance operation, including created and updated files.
+
+## Setup Instructions
+
+Use [[_init|Init Workflow]] to bootstrap a new wiki and [[_update|Update Workflow]] to ingest new sources or run maintenance passes. Read [[_idea|LLM Wiki Idea]] for the operating model, [[_template|Wiki Templates]] for generated page structure, and [[AGENTS|Agent Instructions]] for agent-specific rules.
+
+## Logging Instructions
+
+Use `log.md` as the append-only maintenance history. Log entries should record the operation, unresolved issues, and every changed file with `create - <file-path>` or `update - <file-path>`.
 
 ## Current Starter State
 
@@ -22,20 +30,20 @@ This repository is currently an empty starter wiki. No summary, entity, or conce
 
 1. Copy this folder into a new project.
 2. Put unprocessed source files in `raw/`.
-3. Ask an AI agent to follow [`_update.md`](_update.md).
+3. Ask an AI agent to follow [[_update|Update Workflow]].
 4. Review generated pages in `summaries/`, `entities/`, and `concepts/`.
 5. Keep source files immutable after they move to `ingested/`.
 6. Keep `index.md` and each folder directory page current.
 
 ## Core Structure
 
-- [`index.md`](index.md) - root navigation entrypoint.
-- [`_idea.md`](_idea.md) - operating model and philosophy.
-- [`_init.md`](_init.md) - bootstrap instructions for a new wiki.
-- [`_update.md`](_update.md) - repeatable ingestion and maintenance workflow.
-- [`_template.md`](_template.md) - page templates, metadata, and linking rules.
-- [`AGENTS.md`](AGENTS.md) - instructions for AI agents maintaining the wiki.
-- [`log.md`](log.md) - append-only maintenance history.
+- `index.md` - root navigation entrypoint.
+- [[_idea|LLM Wiki Idea]] - operating model and philosophy.
+- [[_init|Init Workflow]] - bootstrap instructions for a new wiki.
+- [[_update|Update Workflow]] - repeatable ingestion and maintenance workflow.
+- [[_template|Wiki Templates]] - page templates, metadata, and linking rules.
+- [[AGENTS|Agent Instructions]] - instructions for AI agents maintaining the wiki.
+- `log.md` - append-only maintenance history.
 - `raw/` - inbox for unprocessed source files.
 - `ingested/` - archive for consumed source files.
 - `summaries/` - source summaries and synthesis pages.

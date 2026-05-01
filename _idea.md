@@ -16,9 +16,10 @@ This wiki uses an LLM-maintained knowledge base instead of one-off retrieval fro
 - `ingested/` stores consumed source files with dated filenames.
 - Human-facing wiki pages live in reusable topic folders such as `summaries/`, `entities/`, and `concepts/`.
 - Each topic folder has a same-name directory page, such as `entities/entities.md`.
-- AI-facing operating instructions live in root underscore files: [[_init|Init Workflow]], [[_update|Update Workflow]], and [[_template|Wiki Templates]].
+- AI-facing operating instructions live in root underscore files: `_init.md`, `_update.md`, and `_template.md`.
 - `index.md` is the root navigation entrypoint.
 - `log.md` is the append-only history of ingests, queries, lint passes, and restructures.
+- The linked graph uses two hubs: `index.md` links generated wiki directories and `log.md`; `README.md` links setup and agent instruction files.
 
 ## Why This Exists
 

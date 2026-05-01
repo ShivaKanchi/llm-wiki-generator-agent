@@ -44,7 +44,7 @@ Each directory page should link every generated markdown page in that folder exc
 1. Create the root operating files and core folders.
 2. Add same-name directory pages for every topic folder.
 3. Move any already-consumed raw sources into `ingested/` with dated filenames.
-4. Compile the first source into durable wiki pages using [[_template|Wiki Templates]].
+4. Compile the first source into durable wiki pages using `_template.md`.
 5. Update `index.md` with the most important entrypoints.
 6. Append a `log.md` entry describing the initialization.
 

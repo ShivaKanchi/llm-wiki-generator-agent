@@ -15,11 +15,13 @@ This wiki starter turns raw source files into a persistent, linked markdown know
 - [[summaries/summaries|Summaries]]
 - [[entities/entities|Entities]]
 - [[concepts/concepts|Concepts]]
+- [[log|Wiki Log]]
 
 ## Operating Docs
 
-- [[_idea|LLM Wiki Idea]]
-- [[_init|Init Workflow]]
-- [[_update|Update Workflow]]
-- [[_template|Wiki Templates]]
-- [[log|Wiki Log]]
+Setup and agent instructions are linked from `README.md`, not from this index. This keeps the graph split between wiki navigation and setup navigation.
+
+- `_idea.md` - operating model and philosophy.
+- `_init.md` - setup and bootstrap workflow.
+- `_update.md` - ingestion and maintenance workflow.
+- `_template.md` - generated-page templates and metadata rules.
