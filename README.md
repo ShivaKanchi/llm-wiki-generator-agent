@@ -124,7 +124,7 @@ concepts/
 
 ### New Projects: \_init.md
 
-Use [\_init.md](_init.md) to bootstrap the wiki structure. The workflow:
+Use [\_init.md](https://github.com/ShivaKanchi/llm-wiki-generator-agent/blob/main/_init.md) to bootstrap the wiki structure. The workflow:
 
 1. Creates root files and core folders.
 2. Sets up folder directory pages (`entities/entities.md`, `concepts/concepts.md`, `summaries/summaries.md`).
@@ -136,7 +136,7 @@ Use [\_init.md](_init.md) to bootstrap the wiki structure. The workflow:
 
 ### Adding Sources: \_update.md
 
-Use [\_update.md](_update.md) whenever new files are dropped into `raw/` or when the wiki needs maintenance. The workflow:
+Use [\_update.md](https://github.com/ShivaKanchi/llm-wiki-generator-agent/blob/main/_update.md) whenever new files are dropped into `raw/` or when the wiki needs maintenance. The workflow:
 
 1. Scan `raw/` for processable files.
 2. Read each source and extract:
@@ -332,7 +332,7 @@ One short paragraph explaining this page.
 - Compiled from archived sources under `ingested/`.
 ```
 
-See [\_template.md](_template.md) for full templates and citation rules.
+See [\_template.md](https://github.com/ShivaKanchi/llm-wiki-generator-agent/blob/main/_template.md) for full templates and citation rules.
 
 ### Logging
 
@@ -381,12 +381,12 @@ Before considering ingestion complete:
 
 ## Learn More
 
-- **[\_idea.md](_idea.md)** — Operating model, why this pattern exists, ownership model
-- **[\_init.md](_init.md)** — Bootstrap workflow for new projects
-- **[\_update.md](_update.md)** — Repeatable ingest and maintenance workflow
-- **[\_template.md](_template.md)** — Page templates, metadata rules, citation conventions
-- **[AGENTS.md](AGENTS.md)** — AI agent-specific rules and constraints
-- **[index.md](index.md)** — Wiki entry point and navigation
+- **[\_idea.md](https://github.com/ShivaKanchi/llm-wiki-generator-agent/blob/main/_idea.md)** — Operating model, why this pattern exists, ownership model
+- **[\_init.md](https://github.com/ShivaKanchi/llm-wiki-generator-agent/blob/main/_init.md)** — Bootstrap workflow for new projects
+- **[\_update.md](https://github.com/ShivaKanchi/llm-wiki-generator-agent/blob/main/_update.md)** — Repeatable ingest and maintenance workflow
+- **[\_template.md](https://github.com/ShivaKanchi/llm-wiki-generator-agent/blob/main/_template.md)** — Page templates, metadata rules, citation conventions
+- **[AGENTS.md](https://github.com/ShivaKanchi/llm-wiki-generator-agent/blob/main/AGENTS.md)** — AI agent-specific rules and constraints
+- **[index.md](https://github.com/ShivaKanchi/llm-wiki-generator-agent/blob/main/index.md)** — Wiki entry point and navigation
 
 ---
 
